@@ -1,0 +1,25 @@
+# NAME: RemoteCNDirect
+# AUTHOR: proxy-rules
+# UPDATED: 2026-06-16
+# FORMAT: Shadowrocket RULE-SET
+
+# ToDesk
+DOMAIN-SUFFIX,todesk.com
+DOMAIN-SUFFIX,todesk.cn
+DOMAIN-SUFFIX,todesk.com.cn
+DOMAIN-KEYWORD,todesk
+
+# Sunlogin / Oray / AweSun
+DOMAIN-SUFFIX,oray.com
+DOMAIN-SUFFIX,oray.net
+DOMAIN-SUFFIX,orayimg.com
+DOMAIN-SUFFIX,aweray.com
+DOMAIN-SUFFIX,awesun.com
+DOMAIN,server-probe.oray.com
+DOMAIN,sunlogin.oray.com
+DOMAIN-KEYWORD,sunlogin
+DOMAIN-KEYWORD,oray
+DOMAIN-KEYWORD,awesun
+
+# Splashtop China
+DOMAIN-SUFFIX,splashtop.cn
