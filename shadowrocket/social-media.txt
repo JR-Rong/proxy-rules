@@ -1,0 +1,92 @@
+# NAME: SocialMedia
+# AUTHOR: proxy-rules
+# UPDATED: 2026-06-16
+# FORMAT: Shadowrocket RULE-SET
+
+# X / Twitter
+DOMAIN-SUFFIX,x.com
+DOMAIN-SUFFIX,twitter.com
+DOMAIN-SUFFIX,t.co
+DOMAIN-SUFFIX,twimg.com
+DOMAIN-SUFFIX,pscp.tv
+DOMAIN-SUFFIX,periscope.tv
+
+# Meta social apps
+DOMAIN-SUFFIX,facebook.com
+DOMAIN-SUFFIX,fb.com
+DOMAIN-SUFFIX,fbcdn.net
+DOMAIN-SUFFIX,fbsbx.com
+DOMAIN-SUFFIX,messenger.com
+DOMAIN-SUFFIX,m.me
+DOMAIN-SUFFIX,instagram.com
+DOMAIN-SUFFIX,cdninstagram.com
+DOMAIN-SUFFIX,threads.net
+DOMAIN-SUFFIX,whatsapp.com
+DOMAIN-SUFFIX,whatsapp.net
+
+# Short video and video communities
+DOMAIN-SUFFIX,tiktok.com
+DOMAIN-SUFFIX,tiktokv.com
+DOMAIN-SUFFIX,tiktokcdn.com
+DOMAIN-SUFFIX,tiktokcdn-us.com
+DOMAIN-SUFFIX,musical.ly
+DOMAIN-SUFFIX,byteoversea.com
+DOMAIN-SUFFIX,ibytedtos.com
+DOMAIN-SUFFIX,youtube.com
+DOMAIN-SUFFIX,youtu.be
+DOMAIN-SUFFIX,ytimg.com
+DOMAIN-SUFFIX,googlevideo.com
+DOMAIN-SUFFIX,twitch.tv
+DOMAIN-SUFFIX,twitchcdn.net
+DOMAIN-SUFFIX,vimeo.com
+
+# Forum and community platforms
+DOMAIN-SUFFIX,reddit.com
+DOMAIN-SUFFIX,redd.it
+DOMAIN-SUFFIX,redditmedia.com
+DOMAIN-SUFFIX,redditstatic.com
+DOMAIN-SUFFIX,discord.com
+DOMAIN-SUFFIX,discord.gg
+DOMAIN-SUFFIX,discordapp.com
+DOMAIN-SUFFIX,discordapp.net
+DOMAIN-SUFFIX,quora.com
+DOMAIN-SUFFIX,medium.com
+DOMAIN-SUFFIX,substack.com
+DOMAIN-SUFFIX,tumblr.com
+
+# Messaging social platforms
+DOMAIN-SUFFIX,telegram.org
+DOMAIN-SUFFIX,t.me
+DOMAIN-SUFFIX,telegram.me
+DOMAIN-SUFFIX,telegra.ph
+DOMAIN-SUFFIX,line.me
+DOMAIN-SUFFIX,line-apps.com
+DOMAIN-SUFFIX,kakao.com
+DOMAIN-SUFFIX,kakaocdn.net
+
+# Professional and interest networks
+DOMAIN-SUFFIX,linkedin.com
+DOMAIN-SUFFIX,licdn.com
+DOMAIN-SUFFIX,pinterest.com
+DOMAIN-SUFFIX,pinimg.com
+DOMAIN-SUFFIX,snapchat.com
+DOMAIN-SUFFIX,sc-cdn.net
+DOMAIN-SUFFIX,flickr.com
+DOMAIN-SUFFIX,flickrstatic.com
+DOMAIN-SUFFIX,clubhouse.com
+
+# Fediverse and newer social networks
+DOMAIN-SUFFIX,mastodon.social
+DOMAIN-SUFFIX,mastodon.online
+DOMAIN-SUFFIX,mstdn.social
+DOMAIN-SUFFIX,joinmastodon.org
+DOMAIN-SUFFIX,bsky.app
+DOMAIN-SUFFIX,blueskyweb.xyz
+DOMAIN-SUFFIX,truthsocial.com
+
+# Regional social networks outside Mainland China
+DOMAIN-SUFFIX,vk.com
+DOMAIN-SUFFIX,vkuseraudio.net
+DOMAIN-SUFFIX,ok.ru
+DOMAIN-SUFFIX,weverse.io
+DOMAIN-SUFFIX,aminoapps.com
