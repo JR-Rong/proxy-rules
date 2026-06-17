@@ -24,6 +24,10 @@ DOMAIN-SUFFIX,threads.net
 DOMAIN-SUFFIX,whatsapp.com
 DOMAIN-SUFFIX,whatsapp.net
 
+# OnlyFans
+DOMAIN-SUFFIX,onlyfans.com
+DOMAIN-SUFFIX,of.tv
+
 # Short video and video communities
 DOMAIN-SUFFIX,tiktok.com
 DOMAIN-SUFFIX,tiktokv.com
