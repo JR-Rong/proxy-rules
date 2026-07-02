@@ -552,7 +552,8 @@ LimitNOFILE=1048576
 WantedBy=multi-user.target
 SERVICE
   systemctl daemon-reload
-  systemctl enable --now mihomo
+  systemctl enable mihomo
+  systemctl restart mihomo
 }
 
 install_packages
