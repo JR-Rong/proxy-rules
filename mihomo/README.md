@@ -27,6 +27,11 @@ sudo MIHOMO_SKIP_BINARY_INSTALL=1 \
   bash mihomo/deploy-mihomo.sh --proxy-urls /root/mihomo-proxy-urls.txt
 ```
 
+`GEOIP,CN,DIRECT` is disabled by default because it requires mihomo to download
+GeoIP data during validation. The converted `rules/china.yaml` provider is used
+for mainland China direct routing. To enable GeoIP as an extra fallback, set
+`MIHOMO_ENABLE_GEOIP=1`.
+
 By default, mihomo listens on `127.0.0.1:7890`. To expose it to other machines,
 pass an explicit bind address:
 

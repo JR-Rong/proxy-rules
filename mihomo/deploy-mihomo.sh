@@ -18,6 +18,7 @@ Environment:
   MIHOMO_VERSION             Release tag to install, for example v1.19.13. Defaults to latest.
   MIHOMO_RULE_SOURCE_DIR     Directory containing converted rule provider YAML files.
   MIHOMO_SKIP_BINARY_INSTALL Set to 1 to reuse an existing /usr/local/bin/mihomo.
+  MIHOMO_ENABLE_GEOIP        Set to 1 to add GEOIP,CN,DIRECT. Default: 0.
 USAGE
 }
 
@@ -182,6 +183,8 @@ external_controller = os.environ["EXTERNAL_CONTROLLER"]
 
 def truthy(value):
     return str(value or "").lower() in {"1", "true", "yes", "on"}
+
+enable_geoip = truthy(os.environ.get("MIHOMO_ENABLE_GEOIP"))
 
 def first(query, *keys, default=""):
     for key in keys:
@@ -380,6 +383,28 @@ if not proxies:
     raise ValueError("no proxy URLs found")
 
 proxy_names = [proxy["name"] for proxy in proxies]
+rules = [
+    "AND,((NETWORK,UDP),(DST-PORT,443)),REJECT",
+    "IP-CIDR,192.168.0.0/16,DIRECT,no-resolve",
+    "IP-CIDR,10.0.0.0/8,DIRECT,no-resolve",
+    "IP-CIDR,172.16.0.0/12,DIRECT,no-resolve",
+    "IP-CIDR,127.0.0.0/8,DIRECT,no-resolve",
+    "IP-CIDR,169.254.0.0/16,DIRECT,no-resolve",
+    "IP-CIDR,224.0.0.0/4,DIRECT,no-resolve",
+    "IP-CIDR,255.255.255.255/32,DIRECT,no-resolve",
+    "IP-CIDR,17.0.0.0/8,DIRECT,no-resolve",
+    "IP-CIDR,2620:149::/32,DIRECT,no-resolve",
+    "IP-CIDR,2403:300::/32,DIRECT,no-resolve",
+    "IP-CIDR,2A01:B740::/32,DIRECT,no-resolve",
+    "RULE-SET,remote-cn-direct,DIRECT",
+    "RULE-SET,ai-proxy,PROXY",
+    "RULE-SET,social-media,PROXY",
+    "RULE-SET,china,DIRECT",
+]
+if enable_geoip:
+    rules.append("GEOIP,CN,DIRECT")
+rules.append("MATCH,PROXY")
+
 config = {
     "mixed-port": mixed_port,
     "bind-address": bind_address,
@@ -467,26 +492,7 @@ config = {
             "path": "./rules/china.yaml",
         },
     },
-    "rules": [
-        "AND,((NETWORK,UDP),(DST-PORT,443)),REJECT",
-        "IP-CIDR,192.168.0.0/16,DIRECT,no-resolve",
-        "IP-CIDR,10.0.0.0/8,DIRECT,no-resolve",
-        "IP-CIDR,172.16.0.0/12,DIRECT,no-resolve",
-        "IP-CIDR,127.0.0.0/8,DIRECT,no-resolve",
-        "IP-CIDR,169.254.0.0/16,DIRECT,no-resolve",
-        "IP-CIDR,224.0.0.0/4,DIRECT,no-resolve",
-        "IP-CIDR,255.255.255.255/32,DIRECT,no-resolve",
-        "IP-CIDR,17.0.0.0/8,DIRECT,no-resolve",
-        "IP-CIDR,2620:149::/32,DIRECT,no-resolve",
-        "IP-CIDR,2403:300::/32,DIRECT,no-resolve",
-        "IP-CIDR,2A01:B740::/32,DIRECT,no-resolve",
-        "RULE-SET,remote-cn-direct,DIRECT",
-        "RULE-SET,ai-proxy,PROXY",
-        "RULE-SET,social-media,PROXY",
-        "RULE-SET,china,DIRECT",
-        "GEOIP,CN,DIRECT",
-        "MATCH,PROXY",
-    ],
+    "rules": rules,
 }
 
 def scalar(value):
