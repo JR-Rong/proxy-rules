@@ -17,6 +17,7 @@ Options:
 Environment:
   MIHOMO_VERSION             Release tag to install, for example v1.19.13. Defaults to latest.
   MIHOMO_RULE_SOURCE_DIR     Directory containing converted rule provider YAML files.
+  MIHOMO_SKIP_BINARY_INSTALL Set to 1 to reuse an existing /usr/local/bin/mihomo.
 USAGE
 }
 
@@ -123,6 +124,13 @@ detect_asset_pattern() {
 }
 
 install_mihomo_binary() {
+  if [ "${MIHOMO_SKIP_BINARY_INSTALL:-0}" = "1" ]; then
+    [ -x /usr/local/bin/mihomo ] || die "MIHOMO_SKIP_BINARY_INSTALL=1 but /usr/local/bin/mihomo is missing"
+    log "Reusing existing mihomo binary"
+    /usr/local/bin/mihomo -v | head -n 1
+    return 0
+  fi
+
   tmpdir="$(mktemp -d)"
   trap 'rm -rf "$tmpdir"' EXIT
 
@@ -134,7 +142,7 @@ install_mihomo_binary() {
   fi
 
   log "Resolving mihomo release asset"
-  curl -fsSL "$release_api" -o "$tmpdir/release.json"
+  curl --connect-timeout 15 --max-time 120 -fsSL "$release_api" -o "$tmpdir/release.json"
   asset_pattern="$(detect_asset_pattern)"
   asset_url="$(grep -Eo 'https://[^"]+'"$asset_pattern" "$tmpdir/release.json" | head -n 1 || true)"
   if [ -z "$asset_url" ] && [ "$(uname -m)" = "x86_64" ]; then
@@ -143,7 +151,7 @@ install_mihomo_binary() {
   [ -n "$asset_url" ] || die "could not find a matching mihomo release asset"
 
   log "Downloading mihomo binary"
-  curl -fL "$asset_url" -o "$tmpdir/mihomo.gz"
+  curl --connect-timeout 15 --max-time 180 -fL "$asset_url" -o "$tmpdir/mihomo.gz"
   gzip -dc "$tmpdir/mihomo.gz" > "$tmpdir/mihomo"
   install -m 0755 "$tmpdir/mihomo" /usr/local/bin/mihomo
   /usr/local/bin/mihomo -v | head -n 1

@@ -20,6 +20,13 @@ not commit that file.
 sudo bash mihomo/deploy-mihomo.sh --proxy-urls /root/mihomo-proxy-urls.txt
 ```
 
+If `/usr/local/bin/mihomo` is already installed, skip the release download:
+
+```bash
+sudo MIHOMO_SKIP_BINARY_INSTALL=1 \
+  bash mihomo/deploy-mihomo.sh --proxy-urls /root/mihomo-proxy-urls.txt
+```
+
 By default, mihomo listens on `127.0.0.1:7890`. To expose it to other machines,
 pass an explicit bind address:
 
